@@ -10,3 +10,13 @@ render(
   <Greeter />,
   document.getElementById('root')
 )
+
+/**
+ * HMR的API
+ */
+if (module.hot) {
+  // 当 Greeter.js 更新了
+  module.hot.accept('./Greeter', function () {
+    console.log(111)
+  })
+}
