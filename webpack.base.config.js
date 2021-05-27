@@ -5,7 +5,7 @@ module.exports = {
   entry: __dirname + "/app/main.js", // 入口
   output: { //  打包输出
     path: __dirname + "/dist", // 路径
-    filename: "bundle-[hash].js" // 文件名（使用哈希值命名）
+    filename: "bundle-[contenthash].js" // 文件名（使用哈希值命名）
   },
   // development production
   mode: "production", // 选择模式告诉webpack使用相应的内置优化

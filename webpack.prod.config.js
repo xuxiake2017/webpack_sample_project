@@ -5,6 +5,7 @@ const env = require('./config/prod.env')
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
+const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
 
 const devWebpackConfig = merge(baseWebpackConfig, {
   devtool: false,
@@ -47,11 +48,14 @@ const devWebpackConfig = merge(baseWebpackConfig, {
     }),
     // 用于删除/清理您的构建文件夹
     new CleanWebpackPlugin(),
-    new MiniCssExtractPlugin()
+    new MiniCssExtractPlugin({
+      filename: '[name]-[contenthash].css',
+    })
   ],
   optimization: { // 优化
     minimizer: [
-      new UglifyJsPlugin() // 压缩js
+      new UglifyJsPlugin(), // 压缩js
+      new CssMinimizerPlugin(), // 压缩css
     ]
   }
 })
