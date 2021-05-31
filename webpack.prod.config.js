@@ -56,7 +56,24 @@ const devWebpackConfig = merge(baseWebpackConfig, {
     minimizer: [
       new UglifyJsPlugin(), // 压缩js
       new CssMinimizerPlugin(), // 压缩css
-    ]
+    ],
+    /**
+     * runtime，以及伴随的 manifest 数据，主要是指：
+     * 在浏览器运行过程中，webpack 用来连接模块化应用程序所需的所有代码。
+     * 它包含：在模块交互时，连接模块所需的加载和解析逻辑。
+     * 包括：已经加载到浏览器中的连接模块逻辑，以及尚未加载模块的延迟加载逻辑。
+     */
+    runtimeChunk: 'single', // runtime打包成单个文件
+    // splitChunks 可以将公共的依赖模块提取到已有的 entry chunk 中，或者提取到一个新生成的 chunk
+    splitChunks: {
+      cacheGroups: {
+        vendor: {
+          test: /[\\/]node_modules[\\/]/,
+          name: 'vendors',
+          chunks: 'all'
+        }
+      }
+    }
   }
 })
 
