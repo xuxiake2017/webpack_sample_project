@@ -13,6 +13,10 @@ const devWebpackConfig = merge(baseWebpackConfig, {
     historyApiFallback: true, // 当使用 HTML5 History API 时, 所有的 404 请求都会响应 index.html 的内容
     inline: true, // 代码更新，重新加载
     port: 9000, // 端口
+    host: '0.0.0.0', // 服务器可从外部访问
+    allowedHosts: [
+      '.xikcloud.com'
+    ],
     hot: true, // 启用 webpack 的 模块热替换 功能
     open: true, // 启动后打开浏览器
   },
